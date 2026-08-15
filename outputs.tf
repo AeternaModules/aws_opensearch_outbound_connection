@@ -16,7 +16,7 @@ output "opensearch_outbound_connections_connection_mode" {
 }
 output "opensearch_outbound_connections_connection_properties" {
   description = "Map of connection_properties values across all opensearch_outbound_connections, keyed the same as var.opensearch_outbound_connections"
-  value       = { for k, v in aws_opensearch_outbound_connection.opensearch_outbound_connections : k => v.connection_properties if v.connection_properties != null && length(v.connection_properties) > 0 }
+  value       = { for k, v in aws_opensearch_outbound_connection.opensearch_outbound_connections : k => one(v.connection_properties) if v.connection_properties != null && length(v.connection_properties) > 0 }
 }
 output "opensearch_outbound_connections_connection_status" {
   description = "Map of connection_status values across all opensearch_outbound_connections, keyed the same as var.opensearch_outbound_connections"
@@ -24,7 +24,7 @@ output "opensearch_outbound_connections_connection_status" {
 }
 output "opensearch_outbound_connections_local_domain_info" {
   description = "Map of local_domain_info values across all opensearch_outbound_connections, keyed the same as var.opensearch_outbound_connections"
-  value       = { for k, v in aws_opensearch_outbound_connection.opensearch_outbound_connections : k => v.local_domain_info if v.local_domain_info != null && length(v.local_domain_info) > 0 }
+  value       = { for k, v in aws_opensearch_outbound_connection.opensearch_outbound_connections : k => one(v.local_domain_info) if v.local_domain_info != null && length(v.local_domain_info) > 0 }
 }
 output "opensearch_outbound_connections_region" {
   description = "Map of region values across all opensearch_outbound_connections, keyed the same as var.opensearch_outbound_connections"
@@ -32,6 +32,6 @@ output "opensearch_outbound_connections_region" {
 }
 output "opensearch_outbound_connections_remote_domain_info" {
   description = "Map of remote_domain_info values across all opensearch_outbound_connections, keyed the same as var.opensearch_outbound_connections"
-  value       = { for k, v in aws_opensearch_outbound_connection.opensearch_outbound_connections : k => v.remote_domain_info if v.remote_domain_info != null && length(v.remote_domain_info) > 0 }
+  value       = { for k, v in aws_opensearch_outbound_connection.opensearch_outbound_connections : k => one(v.remote_domain_info) if v.remote_domain_info != null && length(v.remote_domain_info) > 0 }
 }
 
